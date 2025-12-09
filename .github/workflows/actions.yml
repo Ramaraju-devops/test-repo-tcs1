@@ -34,7 +34,10 @@ jobs:
             cd terraform-script
             pwd
 
-        # - name: 'Terraform Format'
+        # - name: 'Post Apply bash scripts'
+        #   run: |
+        #         az login --service-principal -u ${{ secrets.AZURE_AD_CLIENT_ID }} -p ${{ secrets.AZURE_AD_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_AD_TENANT_ID }}
+        # # - name: 'Terraform Format'
         #   uses: hashicorp/terraform-github-actions@master
         #   with:
         #     tf_actions_version: 1.4.0
@@ -61,6 +64,15 @@ jobs:
             tf_actions_version: 1.4.0
             tf_actions_subcommand: 'plan'
             tf_actions_working_dir: "terraform-script"
+
+                
+        - name: Terraform Apply
+          if: github.ref == 'refs/heads/main'
+          uses: hashicorp/terraform-github-actions@master
+          with:
+                tf_actions_version: 1.4.0
+                tf_actions_subcommand: 'apply'
+                tf_actions_working_dir: "terraform-script" 
     
 
     terraform-apply:
@@ -127,3 +139,5 @@ jobs:
                 tf_actions_version: 1.4.0
                 tf_actions_subcommand: 'apply'
                 tf_actions_working_dir: "terraform-script" 
+
+        
