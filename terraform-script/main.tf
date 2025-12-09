@@ -24,4 +24,10 @@ resource "azurerm_resource_group" "abctestrg1" {
   location = "West Europe"
 }
 
+resource "azurerm_resource_group" "abctestrg2" {
+  name     = "test-rg-gh02"
+  location = "West Europe"
+}
+
+
 

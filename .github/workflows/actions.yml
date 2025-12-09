@@ -4,7 +4,9 @@ on:
   push:
     branches:
     - develop
-#   pull_request:
+  pull_request:
+    branches:
+    - main
 
 jobs:
     terraform-plan:
@@ -66,13 +68,13 @@ jobs:
             tf_actions_working_dir: "terraform-script"
 
                 
-        - name: Terraform Apply
-        #   if: github.ref == 'refs/heads/main'
-          uses: hashicorp/terraform-github-actions@master
-          with:
-                tf_actions_version: 1.4.0
-                tf_actions_subcommand: 'apply'
-                tf_actions_working_dir: "terraform-script" 
+        # - name: Terraform Apply
+        # #   if: github.ref == 'refs/heads/main'
+        #   uses: hashicorp/terraform-github-actions@master
+        #   with:
+        #         tf_actions_version: 1.4.0
+        #         tf_actions_subcommand: 'apply'
+        #         tf_actions_working_dir: "terraform-script" 
     
 
     terraform-apply:
@@ -104,12 +106,12 @@ jobs:
                 cd terraform-script
                 pwd
 
-        - name: 'Terraform Format'
-          uses: hashicorp/terraform-github-actions@master
-          with:
-                tf_actions_version: 1.4.0
-                tf_actions_subcommand: 'fmt'
-                tf_actions_working_dir: "terraform-script"
+        # - name: 'Terraform Format'
+        #   uses: hashicorp/terraform-github-actions@master
+        #   with:
+        #         tf_actions_version: 1.4.0
+        #         tf_actions_subcommand: 'fmt'
+        #         tf_actions_working_dir: "terraform-script"
                 
         - name: 'Terraform Init'
           uses: hashicorp/terraform-github-actions@master
@@ -133,7 +135,7 @@ jobs:
                 tf_actions_working_dir: "terraform-script"
         
         - name: Terraform Apply
-          if: github.ref == 'refs/heads/main'
+        #   if: github.ref == 'refs/heads/main'
           uses: hashicorp/terraform-github-actions@master
           with:
                 tf_actions_version: 1.4.0
