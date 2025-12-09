@@ -10,12 +10,13 @@ terraform {
 
 provider "azurerm" {
   # Configuration options
+  subscription_id = "13917d14-a7e0-4435-8830-403a28246744"
 }
 
 
 
 resource "azurerm_resource_group" "abctestrg1" {
-  name     = "test-rg-gh1"
+  name     = "test-rg-gh01"
   location = "West Europe"
 }
 
